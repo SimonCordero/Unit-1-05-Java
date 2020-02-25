@@ -14,32 +14,26 @@ class Dice {
     int randomNumber;
     int guessesMade = 1;
     Random rnd = new Random();
-    Scanner reader = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
     
     randomNumber = rnd.nextInt(6) + 1;
     
     System.out.println("A dice is rolled. What number does it land on?");
-    while (true) {
-      try {
-        userGuess = reader.nextInt();
-        if (userGuess == randomNumber) {
-          System.out.println("That's right!");
-          System.out.println("You got it in " + guessesMade + " roll/s.");
-          break;
-          
-        } else {
-          System.out.println("Try again!");
-          guessesMade = guessesMade + 1;
-          
-        }
-        
-      } catch (NumberFormatException nfe) {
-        System.err.println("Please enter a value between (1-6)");
-        
+    try {
+      userGuess = input.nextInt();
+      while (userGuess != randomNumber) {
+        System.out.println("Wrong answer!");
+        userGuess = input.nextInt();
+        guessesMade = guessesMade + 1;
       }
-      
+      System.out.println("----------------");
+      System.out.println("That's correct!");
+      System.out.println("You got it in " + guessesMade + " guesses.");
+    } catch (Exception e) {
+      System.err.println("Please enter a value between (1-6)");
     }
-    
+      
   }
-  
+
 }
+  
